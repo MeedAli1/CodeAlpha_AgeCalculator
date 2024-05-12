@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator</title>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    function ageCalculator() {
+        var dateOfBirth = new Date(document.getElementById("dateofbirth").value);
+        var today = new Date();
+        var y = today.getFullYear() - dateOfBirth.getFullYear();
+        var m = today.getMonth() - dateOfBirth.getMonth();
+        var d = today.getDate() - dateOfBirth.getDate();
+
+        if (m < 0 || (m === 0 && today.getDate() < dateOfBirth.getDate())) {
+            var res = "Your date is invalid!";
+        } else {
+            if (d < 0) {
+                m--;
+                var daysInLastMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+                d = daysInLastMonth + d;
+            }
+            var res = "You're aged " + y + " years and " + m + " months and " + d + " days";
+        }
+        document.getElementById("result").innerHTML = res;
+    }
+
+    document.getElementById("calculateBtn").addEventListener("click", ageCalculator);
+});
+
+
+    </script>
+</head>
+<body>
+    <h2>Age Calculator</h2>
+    <label for="dateofbirth">Date of Birth:</label>
+    <input type="date" id="dateofbirth"><br><br>
+    <button id="calculateBtn">Calculate Age</button><br><br>
+    <div id="result"></div>
+</body>
+</html>
